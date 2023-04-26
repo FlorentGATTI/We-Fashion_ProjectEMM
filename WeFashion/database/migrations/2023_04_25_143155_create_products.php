@@ -13,8 +13,16 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->name("nom");
-
+            $table->string('name');
+            $table->string('short_description', 100);
+            $table->text('description');
+            $table->decimal('price', 10, 2);
+            $table->string('image');
+            $table->enum('size', ['XS', 'S', 'M', 'L', 'XL']);
+            $table->boolean('is_published');
+            $table->enum('state', ['standard', 'en solde']);
+            $table->string('reference', 16);
+            $table->foreignId('category_id')->constrained('categories');
             $table->timestamps();
         });
     }
