@@ -1,23 +1,38 @@
 <?php
 
+namespace Database\Factories;
+
+
 use App\Models\Product;
 use App\Models\Category;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
 use Faker\Generator as Faker;
 
-$factory->define(Product::class, function (Faker $faker) {
-    $sizes = ['XS', 'S', 'M', 'L', 'XL'];
-    $states = ['standard', 'en solde'];
-    $categoryIds = Category::pluck('id')->toArray();
-    return [
-        'name' => $faker->word,
-        'short_description' => $faker->text(100),
-        'description' => $faker->text,
-        'price' => $faker->randomFloat(2, 0, 9999),
-        'image' => $faker->imageUrl(),
-        'size' => $faker->randomElement($sizes),
-        'is_published' => $faker->boolean(),
-        'state' => $faker->randomElement($states),
-        'reference' => $faker->regexify('[A-Za-z0-9]{16}'),
-        'category_id' => $faker->randomElement($categoryIds),
-    ];
-});
+
+class ProductFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        $sizes = ['XS', 'S', 'M', 'L', 'XL'];
+        $states = ['standard', 'en solde'];
+        $categoryIds = Category::pluck('id')->toArray();
+        return [
+            'name' => fake()->word,
+            'short_description' => fake()->text(100),
+            'description' => fake()->text,
+            'price' => fake()->randomFloat(2, 0, 9999),
+            'image' => fake()->imageUrl(),
+            'size' => fake()->randomElement($sizes),
+            'is_published' => fake()->boolean(),
+            'state' => fake()->randomElement($states),
+            'reference' => fake()->regexify('[A-Za-z0-9]{16}'),
+            'category_id' => fake()->randomElement($categoryIds),
+        ];
+    }
+}

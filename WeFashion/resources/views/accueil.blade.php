@@ -17,107 +17,33 @@
 <body>
     @include('navbar')
     <!-- Image card produit  -->
-    <a >
-    <div class="row container mx-auto pt-3">
-        <div class="col-sm-4 mb-3 mb-sm-0">
-            <div class="card">
-                <img src="..." class="card-img-top bg-success" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <img src="..." class="card-img-top bg-success" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <img src="..." class="card-img-top bg-success" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <img src="..." class="card-img-top bg-success" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <img src="..." class="card-img-top bg-success" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <img src="..." class="card-img-top bg-success" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <img src="..." class="card-img-top bg-success" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="card">
-                <img src="..." class="card-img-top bg-success" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4 border-none">
-            <div class="card">
-                <img src="..." class="card-img-top bg-success" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    
-                </div>
-            </div>
-        </div>
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end pt-3">
-            <button class="btn btn-primary">1</button>
-            <button class="btn btn-primary">2</button>
-            <button class="btn btn-primary">3</button>
-            <button class="btn btn-primary">4</button>
-        </div>
+
+    <div class="container p-3">
+        <span class="badge bg-light text-dark float-end">Il y a {{ $products->count() }} articles</span>
     </div>
-    </a>
-    
+    <div class="row container mx-auto pt-3">
+        @foreach ($products as $product)
+        <div class="col-sm-3 p-2">
+            <a href="{{ route('products.show', $product->id) }}">
+                <img class="w-100" src="{{ $product->image }}" alt="Description de l'image">
+                <div class="card-body">
+                    <h2 class="card-title">{{ $product->name }}</h2>
+                    <p class="card-text">{{ $product->description }}</p>
+                    <p class="card-text">{{ $product->price }} $</p>
+                    <p class="card-text">{{ $product->size }}</p>
+                    <p class="card-text">{{ $product->state }}</p>
+                    <p class="card-text">{{ $product->category_id == 1 ? 'Homme' : 'Femme' }}</p>
+                </div>
+            </a>
+            <!-- Afficher d'autres informations du produit ici -->
+        </div>
+        @endforeach
+    </div>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end pt-3">
+        {{ $products->links('pagination::bootstrap-4') }}
+    </div>
+
     @include('footer')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </body>
