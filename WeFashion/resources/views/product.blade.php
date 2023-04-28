@@ -18,11 +18,14 @@
 <div class="container pt-5 pb-5">
     <div class="row">
         <div class="col-lg-6">
-            <img src="{{ $product->image }}" alt="{{ $product->name }}" class="img-fluid">
+            <img src="{{ optional($product)->image }}" alt="{{ optional($product)->name }}">
         </div>
         <div class="col-lg-6">
+            @if($product)
             <h2>{{ $product->name }}</h2>
             <p>{{ $product->description }}</p>
+            @endif
+
             <form>
                 <div class="form-group pb-4">
                     <label for="size">Taille</label>

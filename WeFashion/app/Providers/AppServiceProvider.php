@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $products = Product::all();
+        $products = Product::paginate(15);
         View::share('products', $products);
     }
 }

@@ -54,24 +54,25 @@
                         <label for="category">Catégorie :</label>
                         <select class="form-control" id="category" name="category_id" required>
                             @foreach($categories as $category)
-                            <option value="{{ $category->id }}" @if($product->category_id == $category->id) selected @endif>{{ $category->name }}</option>
+                            <option value="{{ $category->id }}" {{ $product->category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="state">Etat :</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="state" id="new" value="neuf" @if($product->state == 'neuf') checked @endif>
-                            <label class="form-check-label" for="new">Neuf</label>
+                            <input class="form-check-input" type="radio" name="state" id="new" value="standard" {{ $product->state == 'standard' ? 'checked' : '' }}>
+                            <label class="form-check-label" for="new">standard</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="state" id="used" value="occasion" @if($product->state == 'occasion') checked @endif>
-                            <label class="form-check-label" for="used">Occasion</label>
+                            <input class="form-check-input" type="radio" name="state" id="used" value="en solde" {{ $product->state == 'en solde' ? 'checked' : '' }}>
+                            <label class="form-check-label" for="used">en solde</label>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Modifier</button>
                 </form>
             </div>
+
     </div>
     </main>
     </div>

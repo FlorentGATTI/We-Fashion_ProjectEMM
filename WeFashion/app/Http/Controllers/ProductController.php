@@ -63,7 +63,7 @@ class ProductController extends Controller
 
         $product->save();
 
-        return redirect()->route('products.show', $product->id);
+        return redirect()->route('dashboard', $product->id);
     }
 
     public function destroy($id)
@@ -73,5 +73,12 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect()->route('dashboard');
+    }
+
+    public function create()
+    {
+        $categories = Category::all();
+
+        return view('add_product', compact('categories'));
     }
 }

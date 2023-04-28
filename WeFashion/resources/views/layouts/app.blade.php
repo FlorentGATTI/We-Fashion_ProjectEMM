@@ -22,19 +22,17 @@
     <div class="min-h-screen bg-gray-100">
         @include('layouts.navigation')
 
-        <!-- Page Heading -->
-        @if (isset($header))
-        <header class="bg-white shadow">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                {{ $header }}
-            </div>
-        </header>
-        @endif
-
         <!-- Page Content -->
         <main>
-            {{ $slot }}
-            <div class="table-responsive container">
+            <div class="table-responsive container pt-5">
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <h1 class="fw-bold">Liste des produits</h1>
+                    </div>
+                    <div class="col-md-6 text-end">
+                        <a href="{{ route('products.store') }}" class="btn btn-primary">Ajouter</a>
+                    </div>
+                </div>
                 <table class="table">
                     <thead>
                         <tr>
@@ -50,22 +48,27 @@
                         <tr>
                             <td>{{ $product->name }}</td>
                             <td>{{ $product->description }}</td>
-                            <td>{{ $product->price }}</td>
+                            <td>{{ $product->price }}€</td>
                             <td>{{ $product->state }}</td>
                             <td>
                                 <div class="d-flex">
-                                    <form action="{{ route('products.destroy', $product->id) }}" method="POST">
+                                    <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary">Editer</a>
+                                    <form class="ps-2" action="{{ route('products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ? Cette action ne peut pas être annulée.')">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger me-2">Supprimer</button>
                                     </form>
-                                    <a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary">Modifier</a>
                                 </div>
                             </td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
+            </div>
+            <div class="container my-5 text-center">
+                <div class="d-flex flex-column justify-content-center align-items-center">
+                    {{ $products->links('pagination::custom') }}
+                </div>
             </div>
         </main>
     </div>
