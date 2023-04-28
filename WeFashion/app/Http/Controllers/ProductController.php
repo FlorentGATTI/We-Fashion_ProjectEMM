@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
-
+use App\Models\Category;
 
 class ProductController extends Controller
 {
@@ -34,11 +34,44 @@ class ProductController extends Controller
 
         return view('accueil', ["products" => $products]);
     }
-    
+
     public function show($id)
     {
         $product = Product::find($id);
 
         return view('product', compact('product'));
+    }
+
+    public function edit($id)
+    {
+        $product = Product::findOrFail($id);
+        $categories = Category::all();
+
+        return view('edit_product', compact('product', 'categories'));
+    }
+
+
+    public function update(Request $request, $id)
+    {
+        $product = Product::findOrFail($id);
+
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->category_id = $request->category_id;
+        $product->state = $request->state;
+
+        $product->save();
+
+        return redirect()->route('products.show', $product->id);
+    }
+
+    public function destroy($id)
+    {
+        $product = Product::findOrFail($id);
+
+        $product->delete();
+
+        return redirect()->route('dashboard');
     }
 }

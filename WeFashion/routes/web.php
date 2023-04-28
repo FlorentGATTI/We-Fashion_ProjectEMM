@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,60 +16,64 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ProductController::class, "index"]);
+Route::middleware('auth')->group(function () {
+    Route::get('/admin/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/admin/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/admin/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/admin/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 
-Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
-
-Route::get('/auth', function () {
-    return view('auth.login');
+    Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+    Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+    Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
+    Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
 });
 
+Route::get('/', [ProductController::class, "index"]);
+Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
 Route::get('/listing', function () {
     return view('listing');
 });
 
-Route::get('/', [ProductController::class, 'filter'])->name('products.filter');
-Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
-
-Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+Route::get('/admin', function () {
+    return redirect()->route('login');
 });
 
+Route::get('/', [ProductController::class, 'filter'])->name('products.filter');
+
+require __DIR__ . '/auth.php';
+
+
+
+// Route::middleware('auth')->group(function () {
+//     Route::get('/admin/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/admin/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/admin/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+//     Route::get('/admin/dashboard', function () {
+//         return view('dashboard');
+//     })->name('dashboard');
+
+//     Route::get('/admin/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/admin/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/admin/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+//     Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+// });
 
 // Route::get('/', [ProductController::class, "index"]);
 
 // Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
 
-// Route::get('/auth', function () {
-//     return view('auth');
-// });
-
 // Route::get('/listing', function () {
 //     return view('listing');
+// });
+
+// Route::get('/admin', function () {
+//     return redirect()->route('login');
 // });
 
 // Route::get('/', [ProductController::class, 'filter'])->name('products.filter');
 // Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
 
-
-// Route::get('/', function () {
-//     return view('acceuil');
-// });
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
-
-// require __DIR__.'/auth.php';
+// require __DIR__ . '/auth.php';
