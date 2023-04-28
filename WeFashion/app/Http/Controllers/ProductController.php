@@ -30,6 +30,15 @@ class ProductController extends Controller
 
         $products = $products->paginate(6);
 
+        $products->appends($request->query());
+
         return view('accueil', ["products" => $products]);
+    }
+    
+    public function show($id)
+    {
+        $product = Product::find($id);
+
+        return view('product', compact('product'));
     }
 }
