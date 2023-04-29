@@ -21,6 +21,12 @@ class Product extends Model
         'reference',
         'category_id'
     ];
+    
+    protected $nullable = [
+        'image',
+        'is_published',
+    ];
+    
 
     public function scopeByCategory($query, $category_id)
     {

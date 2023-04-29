@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+    -webkit-appearance: button;
+    background-color: rgb(255, 0, 0); /* Modifier la couleur de fond */
+    color: #fff; /* Modifier la couleur de texte */
+    background-image: none;
+}

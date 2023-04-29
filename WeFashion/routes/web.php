@@ -26,12 +26,13 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/products', [ProductController::class, 'index'])->name('products.index');
     Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+    Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+    Route::post('/products', [ProductController::class, 'store'])->name('products.store');
     Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
     Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
-    Route::post('/products', [ProductController::class, 'store'])->name('products.store');
 });
 
-Route::get('/', [ProductController::class, "index"]);
+Route::get('/', [ProductController::class, "index"])->name('home');
 Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
 Route::get('/listing', function () {
     return view('listing');
@@ -41,40 +42,6 @@ Route::get('/admin', function () {
     return redirect()->route('login');
 });
 
-Route::get('/', [ProductController::class, 'filter'])->name('products.filter');
+Route::get('/filter', [ProductController::class, 'filter'])->name('products.filter');
 
 require __DIR__ . '/auth.php';
-
-
-
-// Route::middleware('auth')->group(function () {
-//     Route::get('/admin/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/admin/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/admin/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-//     Route::get('/admin/dashboard', function () {
-//         return view('dashboard');
-//     })->name('dashboard');
-
-//     Route::get('/admin/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/admin/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/admin/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-//     Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
-// });
-
-// Route::get('/', [ProductController::class, "index"]);
-
-// Route::get('/product/{id}', [ProductController::class, 'show'])->name('product.show');
-
-// Route::get('/listing', function () {
-//     return view('listing');
-// });
-
-// Route::get('/admin', function () {
-//     return redirect()->route('login');
-// });
-
-// Route::get('/', [ProductController::class, 'filter'])->name('products.filter');
-// Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
-
-// require __DIR__ . '/auth.php';

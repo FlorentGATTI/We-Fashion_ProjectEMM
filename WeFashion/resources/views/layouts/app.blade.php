@@ -30,7 +30,7 @@
                         <h1 class="fw-bold">Liste des produits</h1>
                     </div>
                     <div class="col-md-6 text-end">
-                        <a href="{{ route('products.store') }}" class="btn btn-primary">Ajouter</a>
+                        <a href="{{ route('products.create') }}" class="btn btn-primary">Ajouter</a>
                     </div>
                 </div>
                 <table class="table">
@@ -38,7 +38,10 @@
                         <tr>
                             <th>Nom</th>
                             <th>Description</th>
+                            <th>Brève description</th>
                             <th>Prix</th>
+                            <th>Tailles</th>
+                            <th>Réferences</th>
                             <th>Etat</th>
                             <th>Action</th>
                         </tr>
@@ -48,7 +51,10 @@
                         <tr>
                             <td>{{ $product->name }}</td>
                             <td>{{ $product->description }}</td>
+                            <td>{{ $product->short_description }}</td>
                             <td>{{ $product->price }}€</td>
+                            <td>{{ $product->size }}</td>
+                            <td>{{ $product->reference }}</td>
                             <td>{{ $product->state }}</td>
                             <td>
                                 <div class="d-flex">

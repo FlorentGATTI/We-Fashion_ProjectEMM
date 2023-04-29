@@ -5,18 +5,28 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use Illuminate\Pagination\Paginator;
 
 class ProductController extends Controller
 {
-    public function index()
+    // public function index()
+    // {
+    //     $products = Product::paginate(6);
+    //     return view('accueil', compact('products'));
+    // }
+
+    public function index(Request $request)
     {
-        $products = Product::all();
-        return view('accueil', ["products" => $products]);
+        $products = Product::paginate(6);
+        $productsCount = Product::count();
+
+        return view('accueil', compact('products', 'productsCount'));
     }
 
     public function filter(Request $request)
     {
         $products = Product::query();
+        $productsCount = Product::count();
 
         $category_id = $request->get('category_id');
 
@@ -32,7 +42,7 @@ class ProductController extends Controller
 
         $products->appends($request->query());
 
-        return view('accueil', ["products" => $products]);
+        return view('accueil', compact('products', 'productsCount'));
     }
 
     public function show($id)
@@ -80,5 +90,35 @@ class ProductController extends Controller
         $categories = Category::all();
 
         return view('add_product', compact('categories'));
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'short_description' => 'required',
+            'price' => 'required',
+            'category_id' => 'required|exists:categories,id',
+            'state' => 'required|in:standard,en solde',
+            'image' => 'required|image|max:2048'
+        ]);
+
+        $imageName = time() . '.' . $request->image->extension();
+        $request->image->move(public_path('images'), $imageName);
+
+        $product = new Product();
+        $product->name = $request->input('name');
+        $product->description = $request->input('description');
+        $product->short_description = $request->input('short_description');
+        $product->price = $request->input('price');
+        $product->category_id = $request->input('category_id');
+        $product->state = $request->input('state');
+        $product->image = $imageName;
+        $product->is_published = $request->input('is_published') ? 1 : 0;
+        $product->reference = $request->input('reference');
+        $product->save();
+
+        return redirect()->route('dashboard')->with('success', 'Le produit a été créé avec succès');
     }
 }

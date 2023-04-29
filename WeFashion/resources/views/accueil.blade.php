@@ -8,11 +8,10 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+
+
     <!-- Styles -->
-
-
-    <!-- Voir pourquoi le css fichier n'est pas pris en compte  -->
-    <link rel="stylesheet" href="{{ asset('css/styleProduct.css') }}">
+    <link rel="stylesheet" href="{{ asset('resources/css/styleProduct.css') }}">
 
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
@@ -23,7 +22,7 @@
     @include('navbar')
     <!-- Image card produit  -->
     <div class="container p-3">
-        <span class="badge bg-light text-dark float-end">Il y a {{ $products->count() }} articles sur la page</span>
+        <span class="badge bg-light text-dark float-end">Il y a un total de {{ $productsCount }} articles </span>
     </div>
     <div class="container my-5">
         <div class="row row-cols-1 row-cols-md-3 g-4">

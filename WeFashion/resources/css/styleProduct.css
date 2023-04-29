@@ -1,4 +1,5 @@
-.default {
+* {
     text-decoration: none;
+    background-color: rgb(218, 0, 0);
     color: rgb(185, 0, 0) !important;
 }
