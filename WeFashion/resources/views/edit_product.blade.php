@@ -35,7 +35,7 @@
         <main>
             <div class="container pt-4">
                 <h1>Modifier un produit</h1>
-                <form action="{{ route('products.update', $product->id) }}" method="POST">
+                <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="form-group">
@@ -53,28 +53,62 @@
                     <div class="form-group">
                         <label for="category">Catégorie :</label>
                         <select class="form-control" id="category" name="category_id" required>
+                            <option value="">Sélectionnez une catégorie</option>
                             @foreach($categories as $category)
                             <option value="{{ $category->id }}" {{ $product->category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
+                        <label for="short_description">Brève description :</label>
+                        <textarea class="form-control" id="short_description" name="short_description" rows="3" required>{{ $product->short_description }}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="size">Taille :</label>
+                        <select class="form-control" id="size" name="size" required>
+                            <option value="">Sélectionnez une taille</option>
+                            <option value="XS" {{ $product->size === 'XS' ? 'selected' : '' }}>XS</option>
+                            <option value="S" {{ $product->size === 'S' ? 'selected' : '' }}>S</option>
+                            <option value="M" {{ $product->size === 'M' ? 'selected' : '' }}>M</option>
+                            <option value="L" {{ $product->size === 'L' ? 'selected' : '' }}>L</option>
+                            <option value="XL" {{ $product->size === 'XL' ? 'selected' : '' }}>XL</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="state">Etat :</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="state" id="new" value="standard" {{ $product->state == 'standard' ? 'checked' : '' }}>
-                            <label class="form-check-label" for="new">standard</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="state" id="used" value="en solde" {{ $product->state == 'en solde' ? 'checked' : '' }}>
-                            <label class="form-check-label" for="used">en solde</label>
+                        <select class="form-control" id="state" name="state" required>
+                            <option value="">Choisir l'état</option>
+                            <option value="standard" {{ $product->state === 'standard' ? 'selected' : '' }}>Standard</option>
+                            <option value="en solde" {{ $product->state === 'en solde' ? 'selected' : '' }}>En solde</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Image<span class="text-danger">*</span></label>
+                        <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image" accept="image/*" required>
+                        <div class="invalid-feedback">{{ $errors->first('image') }}</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="is_published">Publié :</label>
+                        <div>
+                            <label>
+                                <input type="radio" name="is_published" value="1" {{ $product->is_published ? 'checked' : '' }}> Oui
+                            </label>
+                            <label>
+                                <input type="radio" name="is_published" value="0" {{ !$product->is_published ? 'checked' : '' }}> Non
+                            </label>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Modifier</button>
+                    <div class="mb-3">
+                        <label for="reference">Référence :<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control @error('reference') is-invalid @enderror" id="reference" name="reference" value="{{ $product->reference }}" required>
+                        <div class="invalid-feedback">{{ $errors->first('reference') }}</div>
+                    </div>
+                    <div class="mb-3 text-end pt-3 pb-5">
+                        <button type="submit" class="btn btn-primary btn-no-hover">Modifier</button>
+                    </div>
                 </form>
             </div>
-
-    </div>
-    </main>
+        </main>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>

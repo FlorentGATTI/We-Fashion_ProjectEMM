@@ -36,7 +36,7 @@
                     <div class="invalid-feedback">{{ $errors->first('description') }}</div>
                 </div>
                 <div class="mb-3">
-                    <label for="short_description" class="form-label">Petite description<span class="text-danger">*</span></label>
+                    <label for="short_description" class="form-label">Brève description<span class="text-danger">*</span></label>
                     <textarea class="form-control @error('short_description') is-invalid @enderror" id="short_description" name="short_description" required>{{ old('short_description') }}</textarea>
                     <div class="invalid-feedback">{{ $errors->first('short_description') }}</div>
                 </div>
