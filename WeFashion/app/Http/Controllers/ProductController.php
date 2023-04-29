@@ -9,12 +9,6 @@ use Illuminate\Pagination\Paginator;
 
 class ProductController extends Controller
 {
-    // public function index()
-    // {
-    //     $products = Product::paginate(6);
-    //     return view('accueil', compact('products'));
-    // }
-
     public function index(Request $request)
     {
         $products = Product::paginate(6);

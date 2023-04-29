@@ -8,20 +8,19 @@
                     We Fashion
                 </div>
 
-
-
-
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('listproduct')" :active="request()->routeIs('listproduct')">
                         {{ __('Produits') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+
+                    <x-nav-link :href="route('listcategories')" :active="request()->routeIs('listcategories')">
                         {{ __('Catégories') }}
                     </x-nav-link>
+
                     <div class="shrink-0 flex items-center text-uppercase ml-auto">
                         <a class="nav-link" href="{{ route('home') }}"><i class="fas fa-home"></i></a>
                     </div>
