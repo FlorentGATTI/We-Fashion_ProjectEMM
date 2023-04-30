@@ -25,7 +25,7 @@
                 <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
                     <form action="{{ route('login') }}" method="POST" style="width: 23rem;">
                         @csrf
-                        <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Log in</h3>
+                        <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Se connecter</h3>
                         @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
@@ -37,14 +37,14 @@
                         @endif
                         <div class="form-outline mb-4">
                             <input type="email" id="email" name="email" class="form-control form-control-lg" value="{{ old('email') }}" required autocomplete="email" autofocus />
-                            <label class="form-label" for="email">Email address</label>
+                            <label class="form-label" for="email">Adresse e-mail</label>
                         </div>
                         <div class="form-outline mb-4">
                             <input type="password" id="password" name="password" class="form-control form-control-lg" required autocomplete="current-password" />
-                            <label class="form-label" for="password">Password</label>
+                            <label class="form-label" for="password">Mot de passe</label>
                         </div>
                         <div class="pt-1 mb-4">
-                            <button class="btn btn-info btn-lg btn-block" type="submit">Login</button>
+                            <button class="btn btn-info btn-lg btn-block" type="submit">Se connecter</button>
                         </div>
                     </form>
                 </div>

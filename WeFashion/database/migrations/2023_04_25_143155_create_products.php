@@ -19,6 +19,7 @@ return new class extends Migration
             $table->decimal('price', 10, 2);
             $table->string('image');
             $table->enum('size', ['XS', 'S', 'M', 'L', 'XL']);
+            $table->string('sizes_available')->nullable();
             $table->boolean('is_published');
             $table->enum('state', ['standard', 'en solde']);
             $table->string('reference', 16);

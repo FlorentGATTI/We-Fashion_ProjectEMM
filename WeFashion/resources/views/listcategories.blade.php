@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'We Fashion') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -26,10 +26,10 @@
         <!-- Page Content -->
         <main>
             <!-- Affichage de la liste des catégories -->
-            <div class="container py-3">
+            <div class="container py-3 pt-5">
                 <div class="row">
                     <div class="col-12">
-                        <h1>Liste des catégories</h1>
+                        <h1 class="fw-bold">Liste des catégories</h1>
                         <a href="{{ route('categories.create') }}" class="btn btn-primary float-end">Ajouter une catégorie</a>
                     </div>
                 </div>
