@@ -63,7 +63,7 @@
                                     <form class="ps-2" action="{{ route('products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer ce produit ? Cette action ne peut pas être annulée.')">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger me-2">Supprimer</button>
+                                        <button type="submit" class="btn btn-danger me-2 btndelete">Supprimer</button>
                                     </form>
                                 </div>
                             </td>

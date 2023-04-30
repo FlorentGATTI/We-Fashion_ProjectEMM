@@ -104,7 +104,7 @@
                         <div class="invalid-feedback">{{ $errors->first('reference') }}</div>
                     </div>
                     <div class="mb-3 text-end pt-3 pb-5">
-                        <button type="submit" class="btn btn-primary btn-no-hover">Modifier</button>
+                        <button type="submit" class="btn btn-primary btn-no-hover btnupdate">Modifier</button>
                     </div>
                 </form>
             </div>

@@ -15,19 +15,20 @@ class CategoryController extends Controller
 
     public function create()
     {
-        return view('create');
+        $categories = Category::all();
+
+        return view('create', compact('categories'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|unique:categories',
-            'description' => 'required',
         ]);
 
         $category = Category::create($request->all());
 
-        return redirect()->route('index')->with('success', 'La catégorie a bien été créée.');
+        return redirect()->route('listcategories')->with('success', 'La catégorie a bien été créée.');
     }
 
     public function edit(Category $category)
@@ -39,18 +40,17 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required|unique:categories,name,' . $category->id,
-            'description' => 'required',
         ]);
 
         $category->update($request->all());
 
-        return redirect()->route('index')->with('success', 'La catégorie a bien été modifiée.');
+        return redirect()->route('listcategories')->with('success', 'La catégorie a bien été modifiée.');
     }
 
     public function destroy(Category $category)
     {
         $category->delete();
 
-        return redirect()->route('index')->with('success', 'La catégorie a bien été supprimée.');
+        return redirect()->route('listcategories')->with('success', 'La catégorie a bien été supprimée.');
     }
 }

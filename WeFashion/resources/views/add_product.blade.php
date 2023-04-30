@@ -101,7 +101,7 @@
                         <input type="text" class="form-control @error('name') is-invalid @enderror" id="reference" name="reference" required>
                     </div>
                     <div class="mb-3 text-end pt-3 pb-5">
-                        <button type="submit" class="btn btn-primary btn-no-hover">Enregistrer</button>
+                        <button type="submit" class="btn btn-primary btncreate btn-no-hover">Enregistrer</button>
                     </div>
                 </div>
             </form>

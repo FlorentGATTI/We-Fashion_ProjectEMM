@@ -26,18 +26,20 @@
         <!-- Page Content -->
         <main>
             <!-- Affichage de la liste des catégories -->
-            <div class="container">
+            <div class="container py-3">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-12">
                         <h1>Liste des catégories</h1>
-                        <a href="{{ route('categories.create') }}" class="btn btn-primary">Ajouter une catégorie</a>
-                        <br><br>
+                        <a href="{{ route('categories.create') }}" class="btn btn-primary float-end">Ajouter une catégorie</a>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
                         <table class="table">
                             <thead>
                                 <tr>
                                     <th>#</th>
                                     <th>Nom</th>
-                                    <th>Description</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -46,13 +48,12 @@
                                 <tr>
                                     <td>{{ $category->id }}</td>
                                     <td>{{ $category->name }}</td>
-                                    <td>{{ $category->description }}</td>
                                     <td>
-                                        <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-secondary">Modifier</a>
+                                        <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-secondary me-2">Modifier</a>
                                         <form action="{{ route('categories.destroy', $category->id) }}" method="POST" style="display: inline-block">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?')">Supprimer</button>
+                                            <button type="submit" class="btn btn-danger btndelete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?')">Supprimer</button>
                                         </form>
                                     </td>
                                 </tr>

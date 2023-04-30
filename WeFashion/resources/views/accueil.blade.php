@@ -21,7 +21,7 @@
     @include('navbar')
     <!-- Image card produit  -->
     <div class="container p-3">
-        <span class="badge bg-light text-dark float-end">Il y a un total de {{ $productsCount }} articles </span>
+        <span class="badge bg-light text-dark float-end">Il y a un total de {{ $productsCount }} produits </span>
     </div>
     <div class="container my-5">
         <div class="row row-cols-1 row-cols-md-3 g-4">
