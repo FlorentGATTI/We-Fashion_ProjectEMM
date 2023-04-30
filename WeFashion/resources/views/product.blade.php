@@ -24,8 +24,10 @@
             @if($product)
             <h2>{{ $product->name }}</h2>
             <p>{{ $product->description }}</p>
+            <p>{{ $product->short_description }}</p>
+            <p>{{ $product->category_id == 1 ? 'Homme' : 'Femme' }}</p>
+            <p>{{ $product->state }}</p>
             @endif
-
             <form>
                 <div class="form-group pb-4">
                     <label for="size">Taille</label>
@@ -37,6 +39,8 @@
                         <option>XL</option>
                     </select>
                 </div>
+                <p>{{ $product->price }}€</p>
+
                 <button type="submit" class="btn btn-primary">Acheter</button>
             </form>
         </div>
