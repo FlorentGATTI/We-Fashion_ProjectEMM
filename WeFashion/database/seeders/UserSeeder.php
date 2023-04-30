@@ -11,17 +11,10 @@ class UserSeeder extends Seeder
 {
     public function run()
     {
-        // Create the first user
+        // Crée le premier utilsateur
         DB::table('users')->insert([
             'name' => 'Edouard',
             'email' => 'edouard@admin.com',
-            'password' => Hash::make('password'),
-        ]);
-
-        // Create the second user
-        User::create([
-            'name' => 'John',
-            'email' => 'john@doe.com',
             'password' => Hash::make('password'),
         ]);
     }

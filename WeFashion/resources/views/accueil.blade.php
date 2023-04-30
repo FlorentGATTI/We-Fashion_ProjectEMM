@@ -16,6 +16,7 @@
     @include('navbar')
     <!-- Image card produit  -->
     <div class="container p-3">
+        <!--  Affichage variable total produits -->
         <span class="badge bg-light text-dark float-end">Il y a un total de {{ $productsCount }} produits </span>
     </div>
     <div class="container my-5">
@@ -24,7 +25,7 @@
             <div class="col">
                 <a class="default " style="text-decoration: none" href="{{ route('products.show', $product->id) }}">
                     <div class="card h-100">
-                        <img class="card-img-top" src="{{ $product->image }}" alt="Description de l'image">
+                        <img class="card-img-top" src="{{ $product->image }}" alt="{{ $product->name }}">
                         <div class="card-body">
                             <h4 class="card-title">{{ $product->name }}</h4>
                             <p class="card-text">{{ $product->description }}</p>

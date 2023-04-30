@@ -9,6 +9,7 @@ class CategorySeeder extends Seeder
 {
     public function run()
     {
+        // Création de deux catégories
         $categories = [
             [
                 'name' => 'Homme',

@@ -21,6 +21,7 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
+    // Permet d'acceder  $products et $categories dans toutes mes views
     public function boot(): void
     {
         $products = Product::paginate(15);

@@ -40,7 +40,6 @@
                     </select>
                 </div>
                 <p>{{ $product->price }}€</p>
-
                 <button type="submit" class="btn btn-primary">Acheter</button>
             </form>
         </div>
